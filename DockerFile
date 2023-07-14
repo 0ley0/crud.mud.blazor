@@ -4,7 +4,7 @@ EXPOSE 5000
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Pro-crud-mudblazor.csproj",""]
+COPY ["Pro-crud-mudblazor.csproj"]
 RUN dontet restore "./Pro-crud-mudblazor.csproj"
 COPY . .
 WORKDIR "/src"
