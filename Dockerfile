@@ -5,7 +5,7 @@ EXPOSE 5001
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["crud.mud.blazor.csproj","."]
-RUN dontet restore "crud.mud.blazor.csproj"
+RUN dotnet restore "crud.mud.blazor.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "crud.mud.blazor.csproj" -c Release -o /app/build
