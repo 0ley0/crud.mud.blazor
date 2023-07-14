@@ -17,6 +17,6 @@ RUN dotnet publish "crud.mud.blazor.csproj" -c Release -o /app/publish
 # final stage/image
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "crud.mud.blazor.dll"]
 
