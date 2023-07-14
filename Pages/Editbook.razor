@@ -1,0 +1,23 @@
+@page "/Editbook"
+@page "/Editbook/{id:int}"
+
+<MudPaper Class="mx-auto pa-4">
+        <EditForm Model="bookedit" OnValidSubmit="Updatebook">
+            <DataAnnotationsValidator/>
+            <MudItem>
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Style="font-size:14px" Label="title" @bind-Value="bookedit.title" For="@(() => bookedit.title)"></MudTextField>
+                        <MudTextField Style="font-size:14px" Label="author" @bind-Value="bookedit.author" For="@(() => bookedit.author)"></MudTextField>
+                        <MudTextField Style="font-size:14px" Label="count" @bind-Value="bookedit.count" For="@(() => bookedit.count)"></MudTextField>
+                    </MudCardContent>
+                    <MudCardActions >
+                         <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Update</MudButton>
+                         <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" @onclick="@(e => DeleteAsync(bookedit.id))">Delete</MudButton>
+                         <MudSpacer />
+                         <MudButton Variant="Variant.Filled" Color="Color.Info" @onclick="@(()=>Cancels())">Cancel</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </EditForm>
+    </MudPaper>

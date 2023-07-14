@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<MudPaper Class="mx-auto pa-4">
+    <MudTable Items="allbooks">
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">Books</MudText>
+            <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="@Addbook"></MudIconButton>
+            <MudSpacer />
+            <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            <MudButton ButtonType="ButtonType.Submit"  @onclick="@(()=>Indexs(searchString))" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Search</MudButton>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>Title</MudTh>
+            <MudTh>author</MudTh>
+            <MudTh>count</MudTh>
+            <MudTh></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd Style="font-size:14px" DataLabel="Title">@context.title</MudTd>
+            <MudTd Style="font-size:14px" DataLabel="author">@context.author</MudTd>
+            <MudTd Style="font-size:14px" DataLabel="count">@context.count</MudTd>
+            <MudTd>
+                <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Edit" @onclick="@(()=>Gotoeditbook(context.id))" ></MudFab>
+            </MudTd>  
+        </RowTemplate>
+        <PagerContent>
+        <MudTablePager/>
+        </PagerContent>
+    </MudTable>
+</MudPaper>
