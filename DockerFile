@@ -4,8 +4,8 @@ EXPOSE 5000
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Pro-crud-mudblazor.csproj"]
-RUN dontet restore "./Pro-crud-mudblazor.csproj"
+COPY ["Pro-crud-mudblazor.csproj","."]
+RUN dontet restore "Pro-crud-mudblazor.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "Pro-crud-mudblazor.csproj" -c Release -o /app/build
@@ -17,6 +17,6 @@ RUN dotnet publish "Pro-crud-mudblazor.csproj" -c Release -o /app/publish
 # final stage/image
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app ./
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Pro-crud-mudblazor.dll"]
 
