@@ -15,9 +15,6 @@ jobs:
       - name: Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
-      
-      - name: DockerHub logout
-        uses: docker/logout-action@v1
         
       - name: DockerHub login
         uses: docker/login-action@v1
