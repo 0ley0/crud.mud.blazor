@@ -1,0 +1,37 @@
+@page "/Pagecomponent/BooksDetail"
+
+@if (!ShowAdd)
+{
+     
+    <MudPaper Class="mx-auto pa-4">
+    <MudTable @ref="@_table" Items="Getallbooks" RowsPerPage="4" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" >
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">Books</MudText>
+            <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="@GotoBooksAdd"></MudIconButton>
+            <MudSpacer />
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>Title</MudTh>
+            <MudTh>author</MudTh>
+            <MudTh>count</MudTh>
+            <MudTh></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd Style="font-size:14px" DataLabel="Title">@context.title</MudTd>
+            <MudTd Style="font-size:14px" DataLabel="author">@context.author</MudTd>
+            <MudTd Style="font-size:14px" DataLabel="count">@context.count</MudTd> 
+        </RowTemplate>
+        <PagerContent>
+        @* <MudTablePager/> *@
+       <MudPagination SelectedChanged="PageChangAsync" Count="@((_table.GetFilteredItemsCount() + _table.RowsPerPage - 1) / _table.RowsPerPage)" Class="pa-4"/>
+        </PagerContent>
+    </MudTable>
+</MudPaper>
+   
+    
+}
+else 
+{
+  <BookDetail/>
+}
+

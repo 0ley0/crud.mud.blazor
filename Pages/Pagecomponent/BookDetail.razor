@@ -1,0 +1,29 @@
+@page "/Pagecomponent/BookDetail"
+
+@if (!ShowDetail)
+{
+     <MudPaper Class="mx-auto pa-4">
+        <EditForm Model="bookes" OnValidSubmit="CreateBook" >
+            <DataAnnotationsValidator/>
+            <MudItem>
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Style="font-size:12px" Label="title" @bind-Value="bookes.title" Required="true" RequiredError="title is required!" For="@(() => bookes.title)"></MudTextField>
+                        <MudTextField Style="font-size:12px" Label="author" @bind-Value="bookes.author" Required="true" RequiredError="author is required!" For="@(() => bookes.author)"></MudTextField>
+                        <MudTextField Style="font-size:12px" Label="count" @bind-Value="bookes.count" Required="true" RequiredError="count is required!" For="@(() => bookes.count)"></MudTextField>
+                    </MudCardContent>
+                    <MudCardActions>
+                         <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">ADD</MudButton>
+                         <MudSpacer />
+                         <MudButton Variant="Variant.Filled" Color="Color.Info" OnClick="@(()=>GotoCancel())">Cancel</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </EditForm>
+</MudPaper>
+}
+
+else 
+{
+   <BooksDetail/>
+}

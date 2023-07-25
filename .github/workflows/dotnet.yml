@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: boldlinktnl/mudcrud:2.0  # Please change the username
+          tags: boldlinktnl/mudcrud:latest  # Please change the username
