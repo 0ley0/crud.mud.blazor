@@ -15,23 +15,25 @@ namespace crud.mud.blazor.Pages.Pagecomponent
         private int pageno = 1;
         private int page = 0;
         private int pageSize = 10;
+        private int dataCount = 1000;
         private MudTable<Books> _table;
 
         protected override async Task OnInitializedAsync()
         {
-          await GetBooksAll();
+          await GetBooksAll(page,pageSize);
         }
 
         private async Task PageChangAsync(int i)
         {
             // pageno = i;
             _table.NavigateTo(i-1);
+             await GetBooksAll((i-1)*pageSize,pageSize);
 
         }
 
-        private async Task<List<Books>> GetBooksAll()
+        private async Task<List<Books>> GetBooksAll(int p ,int ps)
         {
-            Getallbooks = await appDBContext.books.ToListAsync();
+            Getallbooks = await appDBContext.books.Skip(p).OrderBy(e => e.id).Take(ps).ToListAsync();
             return Getallbooks;
         }
 
