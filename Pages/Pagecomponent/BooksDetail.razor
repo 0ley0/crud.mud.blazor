@@ -1,37 +1,54 @@
 @page "/Pagecomponent/BooksDetail"
 
-@if (!ShowAdd)
-{
+
+    @if (!showAdd)
+        {
      
-    <MudPaper Class="mx-auto pa-4">
-    <MudTable @ref="@_table" Items="Getallbooks" RowsPerPage="@pageSize" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" >
-        <ToolBarContent>
-            <MudText Typo="Typo.h6">Books</MudText>
-            <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="@GotoBooksAdd"></MudIconButton>
-            <MudSpacer />
-        </ToolBarContent>
-        <HeaderContent>
-            <MudTh>Title</MudTh>
-            <MudTh>author</MudTh>
-            <MudTh>count</MudTh>
-            <MudTh></MudTh>
-        </HeaderContent>
-        <RowTemplate>
-            <MudTd Style="font-size:14px" DataLabel="Title">@context.title</MudTd>
-            <MudTd Style="font-size:14px" DataLabel="author">@context.author</MudTd>
-            <MudTd Style="font-size:14px" DataLabel="count">@context.count</MudTd> 
-        </RowTemplate>
-        <PagerContent>
-        @* <MudTablePager/> *@
-       <MudPagination Selected="@pageno" SelectedChanged="PageChangAsync" BoundaryCount="1" MiddleCount="2" Count="@(((dataCount-1) / _table.RowsPerPage) + 1)" Class="pa-4"/>
-        </PagerContent>
-    </MudTable>
-</MudPaper>
+            <MudPaper Class="mx-auto pa-4">
+                <MudTable @ref="@_table" Items="@Getallbooks" 
+                RowsPerPage="@pageSize" Hover="true" 
+                Breakpoint="Breakpoint.Sm"
+                LoadingProgressColor="Color.Info" >
+                    <ToolBarContent>
+                        <MudText Typo="Typo.h6">Books</MudText>
+                        <MudIconButton Icon="@Icons.Material.Outlined.Add" 
+                        OnClick="@GotoBooksAdd">
+                        </MudIconButton>
+                        <MudSpacer />
+                    </ToolBarContent>
+                    <HeaderContent>
+                        <MudTh>Title</MudTh>
+                        <MudTh>author</MudTh>
+                        <MudTh>count</MudTh>
+                        <MudTh></MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd Style="font-size:14px" DataLabel="Title">@context.title</MudTd>
+                        <MudTd Style="font-size:14px" DataLabel="author">@context.author</MudTd>
+                        <MudTd Style="font-size:14px" DataLabel="count">@context.count</MudTd> 
+                    </RowTemplate>
+                    <PagerContent>
+                    @* <MudTablePager/> *@
+                        @* <MudPagination Selected="@pageno" 
+                        SelectedChanged="PageChangAsync" 
+                        BoundaryCount="1" MiddleCount="2" 
+                        Count="@(((_table.GetFilteredItemsCount() + _table.RowsPerPage - 1) / _table.RowsPerPage) + 1)" 
+                        Class="pa-4"/> *@
+                        <MudPagination Selected="@pageno" 
+                        SelectedChanged="PageChangAsync" 
+                        BoundaryCount="1" MiddleCount="2" 
+                        Count="@(((dataCount-1) / _table.RowsPerPage) + 1)" 
+                        Class="pa-4"/>
+                    </PagerContent>
+                </MudTable>
+            </MudPaper>
    
     
-}
-else 
+        }
+    else 
 {
-  <BookDetail/>
+     <BookDetail Getallbooks="@Getallbooks" @bind-ShowAdd="showAdd" />
 }
+
+
 

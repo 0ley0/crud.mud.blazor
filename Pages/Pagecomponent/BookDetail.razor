@@ -1,7 +1,8 @@
 @page "/Pagecomponent/BookDetail"
 
-@if (!ShowDetail)
-{
+
+    @if (!showAdd)
+    {
      <MudPaper Class="mx-auto pa-4">
         <EditForm Model="bookes" OnValidSubmit="CreateBook" >
             <DataAnnotationsValidator/>
@@ -15,15 +16,16 @@
                     <MudCardActions>
                          <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">ADD</MudButton>
                          <MudSpacer />
-                         <MudButton Variant="Variant.Filled" Color="Color.Info" OnClick="@(()=>GotoCancel())">Cancel</MudButton>
+                         <MudButton Variant="Variant.Filled" Color="Color.Info" OnClick="@Cancel">Cancel</MudButton>
                     </MudCardActions>
                 </MudCard>
             </MudItem>
         </EditForm>
-</MudPaper>
-}
+    </MudPaper>
+    }
 
-else 
-{
-   <BooksDetail/>
-}
+    else    
+    {
+       <BooksDetail />
+    }
+
