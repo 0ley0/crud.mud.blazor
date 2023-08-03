@@ -9,8 +9,9 @@ namespace crud.mud.blazor.Pages.Pagecomponent
     public partial class BooksDetail
     {
         [Inject] AppDBContext appDBContext {get; set;}
-        List<Books> Getallbooks = new();
-
+        private List<Books> Getallbooks = new();
+        private Books Getallbook = new();
+        private int oderid;
         private bool showAdd = false;
         private int pageno = 1;
         private int page = 0;
@@ -21,6 +22,8 @@ namespace crud.mud.blazor.Pages.Pagecomponent
 
         protected override async Task OnInitializedAsync()
         {
+            Getallbook = new Books();
+            Getallbooks.Add(Getallbook);
           await GetBooksAll(page,pageSize);
         }
 
@@ -39,8 +42,9 @@ namespace crud.mud.blazor.Pages.Pagecomponent
             return Getallbooks;
         }
 
-        protected void GotoBooksAdd()
-        {
+        private void GotoBooksAdd(int Id)
+        {   
+            oderid = Id;
             showAdd = true;
         } 
     }

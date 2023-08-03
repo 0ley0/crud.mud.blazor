@@ -9,8 +9,10 @@ namespace crud.mud.blazor.Pages.Pagecomponent
     {
         [Inject] AppDBContext appcontext {get;set;}
         [Inject] NavigationManager NavManager { get; set; }
-        [Parameter] public bool ShowAdd {get; set;}
-        [Parameter] public List<Books> Getallbooks {get; set;}
+
+        [Parameter] public bool ShowAddChanged {get; set;}
+        [Parameter] public int Id { get; set; }
+        [Parameter] public List<Books> getallbooks { get; set; }
         [Parameter] public EventCallback<bool> isshowdetelchang {get; set;}
 
         Books bookes = new Books();
@@ -43,8 +45,8 @@ namespace crud.mud.blazor.Pages.Pagecomponent
         }
         private Task Cancel()
         {
-            ShowAdd = false;
-            return isshowdetelchang.InvokeAsync(ShowAdd);
+            ShowAddChanged = false;
+            return isshowdetelchang.InvokeAsync(ShowAddChanged);
         }
        
     }

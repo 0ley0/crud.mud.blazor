@@ -8,11 +8,12 @@
                 <MudTable @ref="@_table" Items="@Getallbooks" 
                 RowsPerPage="@pageSize" Hover="true" 
                 Breakpoint="Breakpoint.Sm"
-                LoadingProgressColor="Color.Info" >
+                LoadingProgressColor="Color.Info"
+                @bind-warranty="Getallbook" >
                     <ToolBarContent>
                         <MudText Typo="Typo.h6">Books</MudText>
                         <MudIconButton Icon="@Icons.Material.Outlined.Add" 
-                        OnClick="@GotoBooksAdd">
+                        OnClick="@(()=>GotoBooksAdd(0))">
                         </MudIconButton>
                         <MudSpacer />
                     </ToolBarContent>
@@ -47,7 +48,8 @@
         }
     else 
 {
-     <BookDetail Getallbooks="@Getallbooks" @bind-ShowAdd="showAdd" />
+     @* <BookDetail Id=@oderid getallbooks="@Getallbooks" @bind-ShowAdd="showAdd" /> *@
+     <BookDetail Id="@oderid" getallbooks="@Getallbooks" @bind-ShowAddChanged="showAdd" />
 }
 
 
